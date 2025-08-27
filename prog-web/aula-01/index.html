@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 21/08/2025</title>
+</head>
+<body>
+    <h1 id="welcome">Hello World!</h1>
+    <h2 id="date">data de acesso da página</h2>
+
+
+
+    <script>
+        document.getElementById("welcome").innerText = "Esse texto foi alterado via JavaScript";
+
+        let date = new Date();
+        document.getElementById("date").innerText = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+        let n1, n2;
+        n1 = 5;
+        n2 = 10;
+        let soma = n1+n2;
+        console.log("resultado de ", n1, " e ", n2, " é ", soma);
+
+    </script>
+
+</body>
+</html>
