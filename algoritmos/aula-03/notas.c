@@ -11,6 +11,10 @@ int main(){
         printf("Aluno aprovado!\n");
         return 0;
     }
-    printf("Aluno reprovado!\n");
+    if(media < 6 && media >= 3){
+        printf("Aluno em exame.\n");
+        return 0;
+    }
+    printf("Aluno reprovado.\n");
     return 0;
 }
