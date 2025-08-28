@@ -93,3 +93,35 @@ a:hover{
 .whatsapp-icon{
     height: 32px;
 }
+
+#about{
+    padding: 2vw 10vw;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#contact{
+
+}
+
+.about-content{
+    display: flex;
+    flex-direction: row;
+}
+.about-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.about-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.about-img img{
+    width: 512px;
+}
