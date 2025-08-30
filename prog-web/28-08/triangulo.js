@@ -1,5 +1,5 @@
 function verificarTriangulo(l1, l2, l3){
-    if(l1 > l2 && l1 > l3){
+    if (l1 + l2 > l3 && l1 + l3 > l2 && l2 + l3 > l1) {
         return "É possivel fazer um triangulo";
     }
     return "Não é possivel formar um triangulo";
