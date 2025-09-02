@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <ctype.h>
 
 int main(void) {
     char secao, coluna;
@@ -12,6 +13,7 @@ int main(void) {
     printf("[E1] - Coca-Cola R$1,99 | [E2] Guarana R$1,99\n");
     printf("======================\n");
     scanf("%c%c", &secao, &coluna);
+    secao = toupper(secao);
     switch (secao) {
         case 'A':
             if (coluna == '1') {

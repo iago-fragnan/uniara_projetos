@@ -1,0 +1,1 @@
+// Faça um programa que desenhe um Losango com a altura definida pelo usuário

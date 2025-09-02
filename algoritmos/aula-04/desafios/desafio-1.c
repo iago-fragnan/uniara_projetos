@@ -1,0 +1,1 @@
+// Ao digitar um número n, mostrar os n primeiros números primos.

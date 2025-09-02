@@ -1,0 +1,1 @@
+// Crie um programa que a partir de uma entrada n mostre um triangulo invertido de n linhas.
