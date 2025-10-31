@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de pousos e decolagem</title>
+</head>
+<script>
+    let contador_decolagem = 0;
+    let contador_pouso = 0;
+
+    function incrementarDecolagem() {
+        contador_decolagem++;
+        document.getElementById("contador_decolagem").innerText = contador_decolagem;
+    }
+
+    function incrementarPouso() {
+        if(contador_decolagem > contador_pouso){
+            contador_pouso++;
+            document.getElementById("contador_pouso").innerText = contador_pouso;
+        }
+    }
+    function decrementarPouso() {
+        if (contador_pouso > 0) {
+            contador_pouso--;
+            document.getElementById("contador_pouso").innerText = contador_pouso;
+        }
+    }
+    function decrementarDecolagem() {
+        if (contador_decolagem > 0) {
+            contador_decolagem--;
+            document.getElementById("contador_decolagem").innerText = contador_decolagem;
+        }
+    }
+</script>
+<body>
+    <h1>Contador de pouso e decolagem</h1>
+    <div>
+        <h2>Contador de Decolagem</h2>
+        <span id="contador_decolagem">0</span>
+        <button onclick="incrementarDecolagem()">+</button>
+        <button onclick="decrementarDecolagem()">-</button>
+    </div>
+    <div>
+        <h2>Contador de Pouso</h2>
+        <span id="contador_pouso">0</span>
+        <button onclick="incrementarPouso()">+</button>
+        <button onclick="decrementarPouso()">-</button>
+    </div>
+</body>
+</html>

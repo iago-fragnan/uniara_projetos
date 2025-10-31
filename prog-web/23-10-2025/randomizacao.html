@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomizacao</title>
+</head>
+
+<script>
+    const vetor = new Array(5);
+
+    function gerar(){
+        const frase = vetor[Math.floor(Math.random() * vetor.length)];
+        document.getElementById("frase").innerText = frase;
+        console.log(indice_aleatorio);
+        
+    }
+
+    function salvar(){
+        const input_texto = document.getElementById("input_texto").value;
+        for(let i = 0; i < vetor.length; i++){
+            if(vetor[i] === undefined){
+                vetor[i] = input_texto;
+                break;
+            }
+        }
+        document.getElementById("input_texto").value = "";
+        console.log(vetor);
+    }
+    function mostrar(){
+
+    }
+
+</script>
+
+<body>
+    <h1>Vetor e randomização</h1>
+    <div>
+        <h2>Frase:</h2>
+        <span id="frase">_____</span>
+        <button onclick="gerar()">gerar</button>
+    </div>
+
+    <div>
+        <h2>Guardar:</h2>
+        <input type="text" id="input_texto" />
+        <button onclick="salvar()">salvar</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <th>id</th>
+                <th>frase</th>
+            </thead>
+            <tbody>
+                <tr>1</tr>
+                <tr>teste</tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

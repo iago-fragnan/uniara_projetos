@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tabelas dinamicas</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+            }
+            .linha-azul-claro {
+                background-color: #e6f3ff;
+            }
+            .linha-azul-escuro {
+                background-color: #cce6ff;
+            }
+            .grid-lista{
+                display: flex;
+                flex-direction: column;
+                width: 12rem;
+            }
+            .grid-lista input{
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="display: flex; gap: 15px;">
+            <div class="grid-lista">
+                <h2>Criar tabela</h2>
+                <label for="nome">Nome da Tabela:</label>
+                <input type="text" name="nome" id="nome" placeholder="Nome da tabela">
+                <label for="col">Colunas</label>
+                <input type="number" name="col" id="col">
+                <button id="criarTabela" onclick="criarTabela()">Criar tabela</button>
+            </div>
+            <div class="grid-lista">
+                <h2>Adicionar linha</h2>
+                <label for="textoLinha">Texto da nova linha:</label>
+                <input type="text" id="textoLinha" placeholder="Texto para a nova linha">
+                <button id="adicionarLinha" onclick="adicionarLinha()">Adicionar linha</button>
+            </div>  
+        </div>
+
+        <div id="tabelas">
+
+        </div>
+    </body>
+
+    <script>
+        function criarTabela(){
+            const colunas = document.getElementById('col').value;
+            const nome = document.getElementById('nome').value;
+            if(nome.trim() === '' || colunas <= 0 || isNaN(colunas)){
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            const container = document.getElementById("tabelas");
+            container.innerHTML = ''; 
+            const tituloH1 = document.createElement("h1");
+            tituloH1.textContent = nome;
+            container.appendChild(tituloH1);
+            const tabela = document.createElement("table");
+            const thead = tabela.createTHead();
+            const linhaCabecalho = thead.insertRow();
+            for (let i = 0; i < colunas; i++) {
+                const th = document.createElement("th");
+                th.textContent = `Coluna ${i + 1}`;
+                linhaCabecalho.appendChild(th);
+            }
+
+            const tbody = tabela.createTBody();
+
+            container.appendChild(tabela);
+        }
+
+        function adicionarLinha(){
+            const tabela = document.querySelector("#tabelas table");
+            if (!tabela) {
+                alert("Nenhuma tabela encontrada. Crie uma tabela primeiro.");
+                return;
+            }
+
+            const tbody = tabela.tBodies[0];
+            const novaLinha = tbody.insertRow();
+            const colunas = tabela.rows[0].cells.length;
+
+            const numeroLinhas = tbody.rows.length;
+            if (numeroLinhas % 2 === 0) {
+                novaLinha.classList.add("linha-azul-claro");
+            } else {
+                novaLinha.classList.add("linha-azul-escuro");
+            }
+
+            for (let j = 0; j < colunas; j++) {
+                const texto = document.getElementById('textoLinha').value;
+                if(texto.trim() === ''){
+                    alert("Por favor, insira o texto para a nova linha.");
+                    return;
+                }
+                const celula = novaLinha.insertCell();
+                celula.textContent = texto;
+            }
+        }
+
+    </script>
+</html>

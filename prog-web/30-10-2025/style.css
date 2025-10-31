@@ -1,0 +1,48 @@
+body{
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#taskInput{
+    width: 200px;
+    margin-right: 3px;
+    border-radius: 3px;
+}
+
+button{
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: medium;
+    
+}
+
+.title{
+    text-align: center;
+}
+
+.actions{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.removeBtn{
+    border: none !important;
+    border-radius: 10px !important;
+    margin-left: 12px;
+}
+
+.removeBtn :hover{
+    cursor: pointer !important;
+}
+
+.removeBtnIcon{
+    
+    height: 15px;
+    width: 15px;
+}
+
+ul{
+    border-radius: 3px;
+    width: 30%;
+}

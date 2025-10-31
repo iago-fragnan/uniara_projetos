@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Tarefas com Seleção</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+}
+input[type="text"] {
+  width: 65%;
+  padding: 8px;
+  font-size: 16px;
+}
+button {
+  font-size: 16px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  margin-left: 5px;
+}
+.btn-remover {
+  background-color: #ff4c4c;
+  color: white;
+}
+.btn-remover:hover {
+  background-color: #ff0000;
+}
+#removeSelectedBtn {
+  background-color: #007bff;
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+}
+#removeSelectedBtn:hover {
+  background-color: #0056b3;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+li {
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+li label {
+  flex-grow: 1;
+  margin-left: 8px;
+  user-select: none;
+}
+#selectAllContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+#selectAllContainer label {
+  margin-left: 8px;
+  user-select: none;
+}
+</style>
+</head>
+<body>
+<h1>Minha Lista de Tarefas</h1>
+<input type="text" id="taskInput" placeholder="Digite uma tarefa...">
+<button onclick="addTask()">Adicionar</button>
+
+<div id="selectAllContainer">
+  <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)">
+  <label for="selectAll">Selecionar todos</label>
+</div>
+
+<button id="removeSelectedBtn" onclick="removeSelected()">Remover selecionados</button>
+<ul id="taskList"></ul>
+
+<script>
+let tarefas = [];
+
+window.onload = function() {
+  const tarefasSalvas = JSON.parse(localStorage.getItem("tarefas"));
+  if (tarefasSalvas) {
+    tarefas = tarefasSalvas;
+    renderTasks();
+  }
+};
+
+function addTask() {
+  const input = document.getElementById("taskInput");
+  const texto = input.value.trim();
+  if (texto !== "") {
+    tarefas.push({ texto: texto, marcada: false });
+    saveTasks();
+    renderTasks();
+    input.value = "";
+  }
+}
+
+function renderTasks() {
+  const ul = document.getElementById("taskList");
+  ul.innerHTML = "";
+  tarefas.forEach((tarefa, index) => {
+    const li = document.createElement("li");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = tarefa.marcada;
+    checkbox.onchange = function() {
+      tarefas[index].marcada = checkbox.checked;
+      saveTasks();
+      updateSelectAllState();
+    };
+
+    const label = document.createElement("label");
+    label.textContent = tarefa.texto;
+
+    li.appendChild(checkbox);
+    li.appendChild(label);
+    ul.appendChild(li);
+  });
+
+  updateSelectAllState();
+}
+
+function toggleSelectAll(selectAllCheckbox) {
+  const marcarTudo = selectAllCheckbox.checked;
+  tarefas.forEach(tarefa => tarefa.marcada = marcarTudo);
+  saveTasks();
+  renderTasks();
+}
+
+function updateSelectAllState() {
+  const selectAll = document.getElementById("selectAll");
+  if (tarefas.length === 0) {
+    selectAll.checked = false;
+    selectAll.indeterminate = false;
+    return;
+  }
+
+  const todasMarcadas = tarefas.every(t => t.marcada);
+  selectAll.checked = todasMarcadas;
+}
+
+function removeSelected() {
+  tarefas = tarefas.filter(tarefa => !tarefa.marcada);
+  saveTasks();
+  renderTasks();
+}
+
+function saveTasks() {
+  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+</script>
+</body>
+</html>
