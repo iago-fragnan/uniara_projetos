@@ -31,7 +31,7 @@ int main(){
         printf("Nota 1: %d\n", nota1[i]);
         printf("Nota 2: %d\n", nota2[i]);
         printf("Frequencia: %d\n", frequencia[i]);
-        if(frequencia[i] > 75 && (nota1[i]+nota2[i])/2 >= 6){
+        if(frequencia[i] >= 75 && (nota1[i]+nota2[i])/2 >= 6){
             printf("Estado: APROVADO\n");
         }
         else{
