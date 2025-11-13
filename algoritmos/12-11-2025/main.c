@@ -14,7 +14,7 @@ int main() {
 
     printf("Digite o ID do carro:\n> ");
     scanf("%d", &meuCarro.id);
-    getchar(); // clear newline
+    getchar();
 
     printf("Digite o nome do carro:\n> ");
     fgets(meuCarro.nome, sizeof(meuCarro.nome), stdin);
